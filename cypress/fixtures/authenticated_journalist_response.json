@@ -1,0 +1,12 @@
+{
+  "status": "success",
+  "data": {
+    "id": 1,
+    "name": "Thomas Ochman",
+    "email": "thomas@craft.com",
+    "provider": "email",
+    "uid": "thomas@craft.com",
+    "allow_password_change": false,
+    "role": "journalist"
+  }
+}
