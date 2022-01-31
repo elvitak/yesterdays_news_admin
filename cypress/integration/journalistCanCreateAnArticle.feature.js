@@ -3,8 +3,8 @@ describe("An article", () => {
   describe("can be created by a journalist", () => {
     before(() => {
       cy.intercept("GET", "/api/articles**", {
-        body: { articles: [] }
-      }).as('emptyResponse');
+        body: { articles: [] },
+      }).as("emptyResponse");
       cy.intercept("POST", "/api/articles", {
         fixture: "create_response.json",
       }).as("articleCreateRequest");
@@ -31,6 +31,22 @@ describe("An article", () => {
         "contain.text",
         "Article succesfully created!"
       );
+    });
+
+    it("is expected form input field for title to be empty after form is submited", () => {
+      cy.get("[data-cy=title-input]").should("have.value", "");
+    });
+
+    it("is expected form input field for body to be empty after form is submited", () => {
+      cy.get("[data-cy=body-input]").should("have.value", "");
+    });
+
+    it("is expected form input field for category to be empty after form is submited", () => {
+      cy.get("[data-cy=category-select]").should("have.value", "");
+    });
+
+    it("is expected form input field for image to be empty after form is submited", () => {
+      cy.get("[data-cy=file-name]").should("have.value", "");
     });
   });
 
