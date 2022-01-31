@@ -22,7 +22,7 @@ const Dashboard = () => {
   const fetchArticles = async () => {
     const data = await Articles.index(currentUser);
     if (data.message || data.length === 0) {
-      setMessage(data.message);
+      setMessage("You haven't created any articles yet");
     } else {
       setArticles(data.articles);
     }
