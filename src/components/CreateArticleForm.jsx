@@ -34,9 +34,11 @@ const CreateArticleForm = ({ onCreateMessage }) => {
     event.preventDefault();
     const response = await Articles.create(article);
     onCreateMessage(response);
-    setArticle(InitialArticle);
-    setFileName("");
-    setTimeout(() => onCreateMessage(""), 4000);
+    if (response === "Article succesfully created!") {
+      setArticle(InitialArticle);
+      setFileName("");
+      setTimeout(() => onCreateMessage(""), 4000);
+    }
   };
 
   const handleChange = (event) => {
@@ -59,7 +61,6 @@ const CreateArticleForm = ({ onCreateMessage }) => {
       component="form"
       noValidate
       autoComplete="off"
-      onSubmit={handleSubmit}
       sx={{ "& > :not(style)": { m: 1 } }}
     >
       <TextField
@@ -110,18 +111,24 @@ const CreateArticleForm = ({ onCreateMessage }) => {
         </Select>
       </FormControl>
       <div>
-        <Input
-          data-cy="image-input"
-          accept="image/*"
-          id="contained-button-file"
-          onChange={handleImage}
-          name="image"
-          multiple
-          type="file"
-        />
-        <Button variant="contained" component="span" endIcon={<PhotoCamera />}>
-          Upload
-        </Button>
+        <label htmlFor="contained-button-file">
+          <Input
+            data-cy="image-input"
+            accept="image/*"
+            id="contained-button-file"
+            onChange={handleImage}
+            name="image"
+            multiple
+            type="file"
+          />
+          <Button
+            variant="contained"
+            component="span"
+            endIcon={<PhotoCamera />}
+          >
+            Upload
+          </Button>
+        </label>
 
         <Typography
           variant="caption"
@@ -137,6 +144,7 @@ const CreateArticleForm = ({ onCreateMessage }) => {
         type="submit"
         data-cy="submit-button"
         endIcon={<SendIcon />}
+        onClick={handleSubmit}
       >
         Submit
       </Button>
