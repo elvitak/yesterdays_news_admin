@@ -34,10 +34,10 @@ const CreateArticleForm = ({ onCreateMessage }) => {
     event.preventDefault();
     const response = await Articles.create(article);
     onCreateMessage(response);
-    if (response === "Article succesfully created!") {
+    setTimeout(() => onCreateMessage(""), 4000);
+    if (response === "Article created successfully") {
       setArticle(InitialArticle);
       setFileName("");
-      setTimeout(() => onCreateMessage(""), 4000);
     }
   };
 
@@ -141,7 +141,6 @@ const CreateArticleForm = ({ onCreateMessage }) => {
       </div>
       <Button
         variant="contained"
-        type="submit"
         data-cy="submit-button"
         endIcon={<SendIcon />}
         onClick={handleSubmit}

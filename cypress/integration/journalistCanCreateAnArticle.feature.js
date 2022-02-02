@@ -29,7 +29,7 @@ describe("An article", () => {
     it("is expected to display a successful message", () => {
       cy.get("[data-cy=message-box]").should(
         "contain.text",
-        "Article succesfully created!"
+        "Article created successfully"
       );
     });
 
